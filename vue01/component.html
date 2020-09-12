@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <javaboy name="vue"></javaboy>              <!-- 传字符串-->
+    <javaboy v-bind:name="hello"></javaboy>     <!-- 传变量-->
+</div>
+
+</body>
+<script>
+    Vue.component('javaboy',{                   //组件
+        props:['name'],         //传值
+        template:"<h1>hello {{name}}!<h1/>"     //展示值
+    })
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello vue",
+            hello:"word",
+        },
+        methods:{
+            reverseMessage(){       //消息反转
+                // alert('hhhh');
+                this.message = this.message.split("").reverse().join("");
+            }
+        }
+    })
+</script>
+</html>

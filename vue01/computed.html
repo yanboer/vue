@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{reverseMessage}}</div>
+    <div>{{copyMsg}}</div>
+<!--    <div>{{reverseMessage()}}</div>-->
+</div>
+
+</body>
+<script>
+    var data = {a:1,b:null}        //data.a == app.a
+    Object.freeze(data)             //冻结 data
+    var app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello java",
+            copyMsg:null,
+        },
+        methods:{
+            // reverseMessage(){
+            //     return this.message.split("").reverse().join("");
+            // }
+        },
+        computed:{      //只会在 message 变化时调用，效率高
+            reverseMessage:{
+                get(){
+                    return this.message.split("").reverse().join("");
+                },
+                set(newVal){    //传进来的新值
+                    console.log("set:" + newVal);
+                    this.copyMsg = newVal;
+                }
+            }
+            // reverseMessage(){
+            //     return this.message.split("").reverse().join("");
+            // }
+        }
+    })
+
+    console.log(data.a == app.a);
+    data.a = 99;
+    console.log(app.a);
+
+    console.log(">>>>>>>>>>>>>>>>>>>>>>");
+    console.log(app.$el == document.getElementById("app"));
+    console.log(app.$data == data);
+
+</script>
+</html>

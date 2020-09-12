@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-bing="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{a}}</div>
+    <button v-bind:disabled = '!enableBtn' v-on:click="num++">按钮</button>
+    <div v-html="a"></div>
+    <div>{{num > 100 ? "true" : num}}</div>
+<!--    <a v-bing:href="mylink">百度</a>      &lt;!&ndash; 引用变量 &ndash;&gt;-->
+    <a :href="mylink">百度</a>        <!-- 简写 -->
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            a:"<h1>hello vue</h1>",
+            enableBtn:true,     //启用
+            b:null,
+            num:99,
+            mylink:"https://www.baidu.com"
+        },
+    })
+d
+
+</script>
+</html>
