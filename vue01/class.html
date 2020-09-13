@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="app">
-    <div>{{fullName}}</div>
+    <div v-bind:class="classObj" class='mydiv1'>{{msg}}</div>  <!-- flag 为 true 显示，false不显示-->
 </div>
 
 </body>
@@ -17,18 +17,29 @@
     var app = new Vue({
         el:"#app",
         data:{
-            firstName:"zhang",          //侦听属性的变化
-            lastName:"san",
-        },
-        computed:{      //只会在 message 变化时调用，效率高(有缓存)
-            fullName(){
-                return this.firstName + ' ' + this.lastName;
+            msg:"hello vue!",
+            flag:true,
+            hasBorder:true,
+            classObj:{          //封装成对象
+                mydiv:true,
+                mydiv2:true,
             }
         },
 
 
     })
 
-
 </script>
+<style>
+    .mydiv2{
+        border: 1px solid #d6ddaf;
+    }
+    .mydiv{
+        font-weight: bold;
+        color: darkblue;
+    }
+    .mydiv1{
+        font-size: 30px;
+    }
+</style>
 </html>

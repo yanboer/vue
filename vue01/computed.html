@@ -28,7 +28,7 @@
             //     return this.message.split("").reverse().join("");
             // }
         },
-        computed:{      //只会在 message 变化时调用，效率高
+        computed:{      //只会在 message 变化时调用，效率高(有缓存)
             reverseMessage:{
                 get(){
                     return this.message.split("").reverse().join("");

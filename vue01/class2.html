@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-bing="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-bind:class="classObj" class='mydiv1'>{{msg}}</div>  <!-- flag 为 true 显示，false不显示-->
+    <div v-bind:class="[flag == true ? mydivClass : '',mydiv2Class]">{{msg}}</div>
+    <div v-bind:class="[{mydiv:flag},mydiv2Class]">{{msg}}</div>
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            msg:"hello vue!",
+            flag:true,
+            hasBorder:true,
+            mydivClass:'mydiv',
+            mydiv2Class:'mydiv2',
+        },
+        computed:{
+            classObj(){          //封装成对象
+                return {
+                    mydiv: this.flag,
+                    mydiv2: this.hasBorder,
+                }
+            },
+        }
+
+
+    })
+
+</script>
+<style>
+    .mydiv2{
+        border: 1px solid #d6ddaf;
+    }
+    .mydiv{
+        font-weight: bold;
+        color: darkblue;
+    }
+    .mydiv1{
+        font-size: 30px;
+    }
+</style>
+</html>

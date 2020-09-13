@@ -1,0 +1,57 @@
+<!--
+    控制变量来决定是否渲染
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-bing="http://www.w3.org/1999/xhtml" xmlns:v-if="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div  v-if="isShow">hello vue</div>     <!-- v-if：为 true才显示元素-->
+    <template v-if="isShow">
+        <p>hello vue</p>
+        <div>hello java vue</div>
+        <span>hello vue</span>
+    </template>
+    <div v-else>else display
+        <div v-if="gender == 0">男</div>     <!-- v-if：会缓存元素-->
+        <div v-else-if="gender == 1">女</div>
+        <div v-else>未知</div>
+    </div>     <!-- v-if：为 false 才显示该元素-->
+
+    <template v-if="loginType == 'username'">
+        <label>用户名</label>
+        <input type="text" placeholder="请输入用户名" key="username">        <!-- 提高效率，值会复用!(默认)，如果不想值被复用，则两个 input 加上不同的 key (属性)即可 -->
+    </template>
+    <template v-else>
+        <label>用户名</label>
+        <input type="text" placeholder="请输入邮箱" key="email">
+    </template>
+
+    <hr>
+
+    <div v-show="!isHide"> hello world(v-show test)</div>       <!-- 开销小 (频繁使用时使用 v-show)-->
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            isShow:false,
+            gender:0,    //0男 1女
+            loginType:'username',
+            isHide:false,
+        },
+
+
+    })
+
+
+</script>
+</html>

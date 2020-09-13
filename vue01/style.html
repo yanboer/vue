@@ -9,7 +9,9 @@
 </head>
 <body>
 <div id="app">
-    <div>{{fullName}}</div>
+    <div v-bind:style="{color:fontColor,fontSize:fontSize + 'px'}">{{msg}}</div>
+    <div v-bind:style="styleObj">{{msg}}</div>
+    <div v-bind:style = '[styleObj,styleObj2]'>{{msg}}</div>
 </div>
 
 </body>
@@ -17,15 +19,17 @@
     var app = new Vue({
         el:"#app",
         data:{
-            firstName:"zhang",          //侦听属性的变化
-            lastName:"san",
-        },
-        computed:{      //只会在 message 变化时调用，效率高(有缓存)
-            fullName(){
-                return this.firstName + ' ' + this.lastName;
+            msg:"java vue!",
+            fontColor:"red",
+            fontSize:30,
+            styleObj:{
+                color:"red",
+                fontSize:'30px',
+            },
+            styleObj2:{
+                border:"1px solid #dedede"
             }
         },
-
 
     })
 
