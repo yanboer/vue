@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <javaboy title="组件1"></javaboy>     <!-- 传变量-->
+    <javaboy title="组件2"></javaboy>
+    <myblog @sayhello="hello" v-for="(blog,index) in blogs"  :title="blog.title" :date="blog.date" :author="blog.author" :key="index">
+        <div style="color: red">hello</div>
+    </myblog>
+    <hr>
+    <!-- 组件会在 `currentTabComponent` 改变时改变 -->
+    <component v-bind:is="currentTabComponent"></component>
+</div>
+
+</body>
+<script>
+    Vue.component('javaboy',{                   //组件
+        data(){         //方法
+            return{
+                counter:0,
+            }
+        },
+        props:["title"],
+        template: '<div><button v-on:click="counter++">hello {{counter}}</button><div>{{title}}</div></div>'
+    })
+
+    Vue.component("myblog",{
+        props:['title','date','author'],
+        template: '<div>' +
+                '<div>{{title}}</div>'+
+                '<div>{{date}} -- {{author}}</div>'+
+                '<slot></slot>'+
+                "<button @click='$emit(\`sayhello\`,title)'>click</button>" +
+            '</div>'
+    })
+    var app = new Vue({
+        el:"#app",
+        methods:{
+            hello(val){
+                console.log("hello " + val + "!");
+            },
+        },
+        data:{
+            currentTabComponent:'myblog',
+            blogs:[
+                {
+                    title:'标题1',
+                    date:"2019-9-13",
+                    author:'yb',
+                },{
+                    title:'标题2',
+                    date:"2019-9-14",
+                    author:'yb2',
+                },{
+                    title:'标题3',
+                    date:"2019-9-15",
+                    author:'yb3',
+                },
+            ],
+        },
+    })
+</script>
+</html>

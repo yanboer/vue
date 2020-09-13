@@ -18,12 +18,14 @@
             <td>作者</td>
             <td>下标</td>
         </tr>
-        <tr v-for="(book,index) in books">
+        <tr v-for="(book,index) in books"  v-bind:key="index">
             <td>{{book.name}}</td>
             <td>{{book.author}} index</td>
             <td>{{index}}</td>
         </tr>
     </table>
+
+    <div v-for="(s,p,index) in site" v-bind:key="index">{{s}} --- {{p}} ---{{index}}</div>
 
 </div>
 
@@ -47,6 +49,11 @@
                     author:"施耐庵",
                 },
             ],
+            site:{
+                url:"www.javaboy.org",
+                name:"yb",
+                server:"github",
+            },
 
         },
 

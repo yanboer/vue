@@ -1,0 +1,47 @@
+<!--
+    控制变量来决定是否渲染
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-bing="http://www.w3.org/1999/xhtml" xmlns:v-if="http://www.w3.org/1999/xhtml"
+      xmlns:on-click="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{counter}}</div>
+    <input type="button" value="自增" v-on:click="increment(2)">
+    <!--
+        keydown: 按下时触发
+        keyup: 按键弹起时触发
+     -->
+    <input type="text" v-on:keyup.alt.67="submit">
+
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            counter:0,
+        },
+        methods:{
+          increment(step){
+              this.counter += step;
+          },
+          submit(){
+              console.log("submit()");
+          }
+        },
+
+
+    })
+
+
+</script>
+</html>
